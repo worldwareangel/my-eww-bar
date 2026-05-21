@@ -1,0 +1,36 @@
+(defpoll time :interval "1s" `date +%H:%M:%S`)
+(defpoll date :interval "10s" `date "+%Y-%m-%d"`)
+
+(defpoll workspaces :interval "1s" `i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name'`)
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "0px"
+                      :width "100%"
+                      :height "35px"
+                      :anchor "top center")
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore false
+  (box :class "bar-class" :orientation "h"
+    
+    ;; ЛЕВАЯ ЧАСТЬ: Рабочие столы i3
+    (box :class "left-side" :halign "start" :space-evenly false :spacing 10
+      (label :class "ws-icon" :text "💻")
+      (label :class "ws-text" :text "Workspace ${workspaces}"))
+    
+    ;; ЦЕНТР: Дата и Время
+    (box :class "center-side" :halign "center" :space-evenly false :spacing 15
+      (label :class "date-lbl" :text "📅 ${date}")
+      (label :class "time-lbl" :text "🕒 ${time}"))
+    
+    ;; ПРАВАЯ ЧАСТЬ: Системные датчики
+    (box :class "right-side" :halign "end" :space-evenly false :spacing 20
+      (box :class "stat-box" :space-evenly false :spacing 8
+        (label :text "⚙️ CPU")
+        (scale :class "cpu-bar" :min 0 :max 101 :active false :value EWW_CPU))
+      
+      (box :class "stat-box" :space-evenly false :spacing 8
+        (label :text "🧠 RAM")
+        (scale :class "ram-bar" :min 0 :max 101 :active false :value EWW_RAM)))))
