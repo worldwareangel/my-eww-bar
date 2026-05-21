@@ -1,0 +1,46 @@
+* {
+  all: unset;
+  font-family: "JetBrains Mono", "Ubuntu", "Arial", sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.bar-class {
+  background-color: #1a1b26; 
+  color: #a9b1d6;
+  border-bottom: 2px solid #24283b;
+  padding: 0px 20px;
+}
+
+.left-side {
+  color: #7aa2f7;
+}
+
+.center-side {
+  color: #c0caf5;
+}
+
+.time-lbl {
+  color: #ff9e64;
+}
+
+.date-lbl {
+  color: #9ece6a;
+}
+
+scale trough {
+  background-color: #24283b;
+  border-radius: 4px;
+  min-width: 80px;
+  min-height: 8px;
+}
+
+.cpu-bar highlight {
+  background-color: #bb9af3;
+  border-radius: 4px;
+}
+
+.ram-bar highlight {
+  background-color: #f7768e;
+  border-radius: 4px;
+}
